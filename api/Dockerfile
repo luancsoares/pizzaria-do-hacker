@@ -1,6 +1,6 @@
 # --- Hardening da imagem da API ---
 # 1) Imagem base "slim": menos pacotes = menos vulnerabilidades
-FROM python:3.12-slim
+FROM python:3.14-slim
 
 # 2) Nao gera .pyc (o filesystem sera read-only no Kubernetes) e loga sem buffer
 ENV PYTHONDONTWRITEBYTECODE=1 \
