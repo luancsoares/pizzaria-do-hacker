@@ -1,0 +1,38 @@
+# Regras SAST proprias da Pizzaria (rodam junto com as regras publicas do Semgrep).
+# Escrever regras proprias e uma habilidade valorizada: voce ensina o scanner
+# a procurar os erros que importam no SEU codigo.
+rules:
+  - id: pizzaria-sql-injection
+    languages: [python]
+    severity: ERROR
+    message: >-
+      SQL montado com texto do usuario (f-string, + ou format). Use query parametrizada:
+      db.execute("... WHERE nome LIKE ?", (valor,))
+    metadata: {cwe: "CWE-89: SQL Injection", owasp: "A03:2021 - Injection"}
+    patterns:
+      - pattern-either:
+          - pattern: $DB.execute(f"...", ...)
+          - pattern: $DB.execute("..." + $X, ...)
+          - pattern: $DB.execute("...".format(...), ...)
+          - pattern: $DB.execute("..." % $X, ...)
+
+  - id: pizzaria-xss-innerhtml
+    languages: [javascript]
+    severity: ERROR
+    message: >-
+      innerHTML/outerHTML com dado dinamico pode executar script injetado (XSS).
+      Use textContent ou crie os elementos com createElement.
+    metadata: {cwe: "CWE-79: Cross-site Scripting", owasp: "A03:2021 - Injection"}
+    patterns:
+      - pattern-either:
+          - pattern: $EL.innerHTML = $X
+          - pattern: $EL.outerHTML = $X
+          - pattern: $EL.insertAdjacentHTML($POS, $X)
+      - pattern-not: $EL.innerHTML = "..."
+
+  - id: pizzaria-eval
+    languages: [python, javascript]
+    severity: ERROR
+    message: eval() executa texto como codigo. Nunca use com dado externo.
+    metadata: {cwe: "CWE-95: Code Injection"}
+    pattern: eval(...)

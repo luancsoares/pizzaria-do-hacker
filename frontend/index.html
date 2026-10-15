@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pizzaria do Hacker</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>🍕 Pizzaria do Hacker</h1>
+    <p class="tagline">Massa fina, segurança grossa.</p>
+  </header>
+
+  <main>
+    <section class="busca">
+      <input id="busca" type="search" placeholder="Buscar pizza... (tente 'SQL')" maxlength="50">
+    </section>
+
+    <section id="cardapio" class="cardapio" aria-live="polite"></section>
+
+    <section class="pedido">
+      <h2>Fazer pedido</h2>
+      <form id="form-pedido">
+        <label>Seu nome <input id="cliente" required maxlength="40"></label>
+        <label>Pizza <select id="pizza"></select></label>
+        <label>Quantidade <input id="quantidade" type="number" min="1" max="20" value="1" required></label>
+        <button type="submit">Pedir 🍕</button>
+      </form>
+      <p id="resultado" class="resultado"></p>
+    </section>
+  </main>
+
+  <footer>Missão 2 · versão segura 🛡️</footer>
+  <script src="app.js"></script>
+</body>
+</html>

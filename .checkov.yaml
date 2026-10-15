@@ -1,0 +1,20 @@
+# Configuracao do Checkov (gate de IaC).
+#
+# MISSAO 3 - TAREFA DE TRIAGEM:
+# Cada achado do Checkov tem 3 destinos possiveis:
+#   1. CORRIGIR  -> muda o Dockerfile/manifest e o achado some
+#   2. ACEITAR   -> coloca o ID em skip-check COM JUSTIFICATIVA e prazo
+#   3. FALSO POSITIVO -> tambem vai para skip-check, explicando por que nao se aplica
+#
+# Nunca pule um check sem justificativa: num time real, um auditor vai perguntar.
+# Exemplo de formato (descomente e adapte depois da triagem):
+#
+# skip-check:
+#   - CKV_K8S_XX   # Motivo: ... | Risco aceito por: Luan | Revisar em: Missao 5
+
+framework:
+  - kubernetes
+  - dockerfile
+skip-path:
+  - .venv
+compact: true
