@@ -40,7 +40,7 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       # Actions de terceiros fixadas por SHA do commit (tag pode ser movida, SHA nao)
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 0              # historico COMPLETO: segredo apagado num commit antigo continua vazado
           persist-credentials: false
@@ -62,7 +62,7 @@ jobs:
     name: "🧠 SAST (Semgrep)"
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with: {persist-credentials: false}
 
       - name: Instalar Semgrep
@@ -84,7 +84,7 @@ jobs:
     name: "📦 SCA (pip-audit)"
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with: {persist-credentials: false}
 
       - name: Instalar pip-audit
@@ -100,7 +100,7 @@ jobs:
     name: "🏗️ IaC (Checkov)"
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with: {persist-credentials: false}
 
       - name: Instalar Checkov
@@ -121,7 +121,7 @@ jobs:
       matrix:
         app: [api, frontend]
     steps:
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with: {persist-credentials: false}
 
       - name: Build da imagem
